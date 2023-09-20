@@ -2,7 +2,9 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div>Footer</div>
+   <footer className='bg-footer-bg text-footer-text p-6 text-center'>
+    Website By Gracjan Wojciechowski Using Strapi & Nextjs
+   </footer>
   )
 }
 

@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-    background-color: #e3e3e3;
-    color: #171616
+html, body, #__next {
+
+    height: 100%;
+
 }

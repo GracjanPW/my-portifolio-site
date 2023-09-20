@@ -5,13 +5,13 @@ import Navbar from "../unique/Navbar";
 
 export default function MainLayout({ children }: { children: ReactNode }){
     return (
-        <header>
+        <div className="flex flex-col h-full">
             <Header/>
             <Navbar/>
-            <main>
+            <main className="grow bg-background">
                 {children}
             </main>
             <Footer/>
-        </header>
+        </div>
     )
 }

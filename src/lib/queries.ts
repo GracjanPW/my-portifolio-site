@@ -6,6 +6,14 @@ export const GET_POST_BY_SLUG = gql`query PostSlug($slug:String){
         attributes {
           Title
           content
+          thumbnail {
+            data {
+              attributes{
+                url
+                name
+              }
+            }
+          }
         }
       }
     }
@@ -32,6 +40,7 @@ export const GET_POSTS_BY_CATEGORY = gql`query GetPostsByCat($category:String){
             attributes{
               Title
               slug
+              publishedAt
               thumbnail {
                 data {
                   attributes {
@@ -64,7 +73,6 @@ export const GET_CATEGORIES_FULL = gql`query {
         id
         attributes {
             Name
-            slug
             image {
                 data {
                     attributes {

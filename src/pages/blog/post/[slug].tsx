@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 
 import React from 'react'
 import client from "@/lib/GQLClient"
@@ -10,8 +11,12 @@ import { GET_ALL_POST_SLUGS, GET_POST_BY_SLUG } from "@/lib/queries";
 
 export default function Page({ post}:any) {
     return (
-        <div>
-            <h1>{post.title}</h1>
+        <div className='m-auto w-[80%]'>
+            <img
+                    src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.image.data.attributes.url}`}
+                    alt={post.image.data.attributes.name}
+                  />
+            <h1 className=' text-4xl text-center'>{post.title}</h1>
             <MDXRemote {...post.content} />
         </div>
     );
@@ -50,7 +55,8 @@ export async function getStaticProps({ params }:any) {
           props: {
             post: {
               title: attrs.Title,
-                content: html  
+                content: html,
+                image: attrs.thumbnail
             }
             
           }

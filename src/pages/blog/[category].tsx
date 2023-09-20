@@ -1,29 +1,36 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Card from "@/components/common/Card";
 import client from "@/lib/GQLClient";
 import { GET_POSTS_BY_CATEGORY } from "@/lib/queries";
 
-export default function Page({ posts }: any) {
+export default function Page({ posts, category }: any) {
   const goToPost = (slug: string) => {
     window.location.href = `/blog/post/${slug}`;
   };
   return (
-    <div>
+    <div className="m-auto w-[80%]">
+      <h1 className="text-3xl my-4">Posts from {category}</h1>
       <div className="flex">
         {posts &&
           posts.map((post: any) => {
             return (
               <div key={post.id} className="flex-1 max-w-[25%]">
-                <div
-                  className="border-4 border-blue"
+                <Card
+                  
                   onClick={() => goToPost(post.attributes.slug)}
-                >
-                  <h1>{post.attributes.Title}</h1>
+                > 
+                  
                   <img
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.attributes.thumbnail.data.attributes.url}`}
                     alt={post.attributes.thumbnail.data.attributes.name}
                   />
-                </div>
+                  <div className="p-3">
+                    <h1 className=" font-semibold text-lg text-center">{post.attributes.Title}</h1>
+                    <p>{post.attributes.publishedAt}</p>
+                  </div>
+                  
+                </Card>
               </div>
             );
           })}
@@ -43,6 +50,7 @@ export const getServerSideProps = async ({ params }: any) => {
   return {
     props: {
       posts: data.categories.data[0].attributes.posts.data,
+      category:params.category
     },
   };
 };
