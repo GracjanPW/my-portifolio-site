@@ -9,7 +9,7 @@ export default function Page({ posts, category }: any) {
     window.location.href = `/blog/post/${slug}`;
   };
   return (
-    <div className="m-auto w-[80%]">
+    <div className="m-auto container-fluid">
       <h1 className="text-3xl my-4">Posts from {category}</h1>
       <div className="flex">
         {posts &&

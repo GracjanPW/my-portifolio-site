@@ -11,10 +11,11 @@ import { GET_ALL_POST_SLUGS, GET_POST_BY_SLUG } from "@/lib/queries";
 
 export default function Page({ post}:any) {
     return (
-        <div className='m-auto w-[80%]'>
+        <div className='m-auto container-fluid py-10'>
             <img
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.image.data.attributes.url}`}
                     alt={post.image.data.attributes.name}
+                    width="100%"
                   />
             <h1 className=' text-4xl text-center'>{post.title}</h1>
             <MDXRemote {...post.content} />
@@ -34,7 +35,7 @@ export const getStaticPaths = async () =>{
 
     return {
         paths,
-        fallback: false
+        fallback: "blocking"
     }
 }
 
@@ -59,7 +60,8 @@ export async function getStaticProps({ params }:any) {
                 image: attrs.thumbnail
             }
             
-          }
+          },
+          revalidate: 10, 
       }
 }
 

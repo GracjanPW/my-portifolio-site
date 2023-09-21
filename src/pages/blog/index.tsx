@@ -15,7 +15,7 @@ export default function Blog({ categories}:any) {
   };
 
   return (
-    <div className="m-auto w-[80%]">
+    <div className="container-fluid m-auto">
       <h1 className="text-3xl my-4">Topics</h1>
       <div className="flex flex-row">
         {categories &&

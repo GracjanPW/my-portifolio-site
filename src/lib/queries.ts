@@ -85,3 +85,24 @@ export const GET_CATEGORIES_FULL = gql`query {
     }
   }
 }`
+
+export const GET_ALL_PROJECTS = gql`query{
+  projects {
+    data {
+      id
+      attributes {
+        Name
+        publishedAt
+        thumbnail {
+          data {
+            attributes {
+              name
+              url  
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
