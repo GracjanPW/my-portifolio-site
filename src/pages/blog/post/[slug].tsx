@@ -1,24 +1,30 @@
-/* eslint-disable @next/next/no-img-element */
+
 
 import React from 'react'
 import client from "@/lib/GQLClient"
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 import { GET_ALL_POST_SLUGS, GET_POST_BY_SLUG } from "@/lib/queries";
+import Image from 'next/image';
 // type for getstaticpaths and props
-
 
 
 export default function Page({ post}:any) {
     return (
-        <div className='m-auto container-fluid py-10'>
-            <img
+        <div id="Post" className='m-auto container-fluid py-10'>
+            <Image
+                    loader={()=> `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.image.data.attributes.url}`}
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.image.data.attributes.url}`}
                     alt={post.image.data.attributes.name}
-                    width="100%"
+                    width={0}
+                    height={0}
+                    style={{width:'100%;',height:'auto'}}
                   />
-            <h1 className=' text-4xl text-center'>{post.title}</h1>
-            <MDXRemote {...post.content} />
+            <h1 className='my-5 text-4xl text-center'>{post.title}</h1>
+            <div className='content px-8'>
+                <MDXRemote {...post.content} />
+            </div>
+            
         </div>
     );
 }

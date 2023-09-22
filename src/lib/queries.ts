@@ -93,11 +93,13 @@ export const GET_ALL_PROJECTS = gql`query{
       attributes {
         Name
         publishedAt
+        slug
         thumbnail {
           data {
             attributes {
               name
               url  
+              
             }
           }
         }
@@ -106,3 +108,34 @@ export const GET_ALL_PROJECTS = gql`query{
   }
 }
 `
+
+export const GET_ALL_PROJECT_SLUGS = gql`query{
+  projects {
+    data {
+      attributes {
+        slug
+      }
+    }
+  }
+}`
+
+export const GET_PORJECT_BY_SLUG = gql`query GetProject($slug:String){
+  projects(filters:{slug:{eq:$slug}}) {
+    data {
+      attributes {
+        Name
+        publishedAt
+        description
+        thumbnail {
+          data {
+            attributes {
+              name
+              url
+            }
+          }
+        }
+        repo
+      }
+    }
+  }
+}`

@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+
 
 import Card from "@/components/common/Card";
 import client from "@/lib/GQLClient";
@@ -24,9 +24,13 @@ export default function Blog({ categories}:any) {
               <div key={category.id} className="flex-1">
                 <Card className="w-max m-auto" onClick={()=>navigateToCategory(category.attributes.Name)}>
                 
-                  <img
+                  <Image
+                    loader={()=>`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.attributes.image.data.attributes.url}`}
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.attributes.image.data.attributes.url}`}
                     alt={category.attributes.image.data.attributes.name}
+                    width={0}
+                    height={0}
+                    style={{width:'100%;',height:'auto'}}
 
                   />
                   <h1 className="text-center font-semibold p-4">

@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 
 import Card from "@/components/common/Card";
 import client from "@/lib/GQLClient";
 import { GET_POSTS_BY_CATEGORY } from "@/lib/queries";
+import Image from "next/image";
 
 export default function Page({ posts, category }: any) {
   const goToPost = (slug: string) => {
@@ -21,9 +21,13 @@ export default function Page({ posts, category }: any) {
                   onClick={() => goToPost(post.attributes.slug)}
                 > 
                   
-                  <img
+                  <Image
+                  loader={()=>`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.attributes.thumbnail.data.attributes.url}`}
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.attributes.thumbnail.data.attributes.url}`}
                     alt={post.attributes.thumbnail.data.attributes.name}
+                    width={0}
+                    height={0}
+                    style={{width:'100%;',height:'auto'}}
                   />
                   <div className="p-3">
                     <h1 className=" font-semibold text-lg text-center">{post.attributes.Title}</h1>

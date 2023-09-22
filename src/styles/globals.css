@@ -7,3 +7,23 @@ html, body, #__next {
     height: 100%;
 
 }
+
+
+
+
+#Post .content h1 {
+    font-size: 2rem;
+    margin: 1.5rem 1rem;
+}
+#Post .content h2 {
+    font-size: 1.75rem;
+    margin: 0.75rem 1rem;
+}
+#post .content ul,li {
+    list-style: inside;
+    font-size: 1.25rem;
+}
+
+#Post .content  p, #Post .content ul li {
+    font-size: 1.25rem;
+}

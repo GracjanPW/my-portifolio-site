@@ -2,13 +2,16 @@
 import Card from '@/components/common/Card';
 import client from '@/lib/GQLClient'
 import { GET_ALL_PROJECTS } from '@/lib/queries'
+import { useRouter } from 'next/router';
 import React from 'react'
 
-export default function index({
+export default function Page({
     projects
 }:any) {
-    const goToProject = ()=>{
+    const router = useRouter();
 
+    const goToProject = (href:string)=>{
+        router.push("/projects/"+href)
     }
   return (
     <div className="container-fluid m-auto ">
@@ -19,7 +22,7 @@ export default function index({
             return (
               <div key={project.id} className="flex-1 max-w-[25%]">
                 <Card
-                  
+                  onClick={()=>goToProject(project.attributes.slug)}
                   
                 > 
                   

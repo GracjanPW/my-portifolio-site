@@ -6,7 +6,7 @@ import React from "react";
 export default function index() {
   return (
     <div className="container-fluid m-auto py-10 flex flex-row justify-between">
-      <div>
+      <div className="flex flex-row w-full justify-around flex-1">
         <a href="https://www.linkedin.com/in/gracjan-wojciechowski-798647185/">
           <LinkedIn />
           LinkedIn
@@ -22,7 +22,7 @@ export default function index() {
       </div>
 
       <form
-        className="max-w-md p-5 shadow-md rounded-md"
+        className="max-w-md p-5 shadow-md rounded-md flex-[2]"
         action="https://api.web3forms.com/submit"
         method="POST"
       >
