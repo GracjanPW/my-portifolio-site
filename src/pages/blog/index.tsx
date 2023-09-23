@@ -30,7 +30,7 @@ export default function Blog({ categories}:any) {
                     alt={category.attributes.image.data.attributes.name}
                     width={0}
                     height={0}
-                    style={{width:'100%;',height:'auto'}}
+                    style={{width:'100%',height:'auto'}}
 
                   />
                   <h1 className="text-center font-semibold p-4">

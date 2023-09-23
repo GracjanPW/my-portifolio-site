@@ -4,7 +4,7 @@ import client from '@/lib/GQLClient'
 import { GET_ALL_PROJECTS } from '@/lib/queries'
 import { useRouter } from 'next/router';
 import React from 'react'
-
+import Image from 'next/image';
 export default function Page({
     projects
 }:any) {
@@ -26,9 +26,13 @@ export default function Page({
                   
                 > 
                   
-                  <img
+                  <Image
+                    loader={()=>`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${project.attributes.thumbnail.data.attributes.url}`}
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${project.attributes.thumbnail.data.attributes.url}`}
                     alt={project.attributes.thumbnail.data.attributes.name}
+                    width={0}
+                    height={0}
+                    style={{width:'100%',height:'auto'}}
                   />
                   <div className="p-3">
                     <h1 className=" font-semibold text-lg text-center">{project.attributes.Name}</h1>

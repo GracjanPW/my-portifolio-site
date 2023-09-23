@@ -27,7 +27,7 @@ export default function Page({ posts, category }: any) {
                     alt={post.attributes.thumbnail.data.attributes.name}
                     width={0}
                     height={0}
-                    style={{width:'100%;',height:'auto'}}
+                    style={{width:'100%',height:'auto'}}
                   />
                   <div className="p-3">
                     <h1 className=" font-semibold text-lg text-center">{post.attributes.Title}</h1>

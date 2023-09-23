@@ -18,7 +18,7 @@ export default function Page({ post}:any) {
                     alt={post.image.data.attributes.name}
                     width={0}
                     height={0}
-                    style={{width:'100%;',height:'auto'}}
+                    style={{width:'100%',height:'auto'}}
                   />
             <h1 className='my-5 text-4xl text-center'>{post.title}</h1>
             <div className='content px-8'>

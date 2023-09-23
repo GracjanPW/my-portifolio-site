@@ -139,3 +139,24 @@ export const GET_PORJECT_BY_SLUG = gql`query GetProject($slug:String){
     }
   }
 }`
+
+export const GET_HOME_PAGE_DATA = gql`query {
+  home {
+    data{
+			attributes{
+				name
+        role
+        description
+        image {
+          data {
+            attributes{
+              url 
+              name
+            }
+          }
+        }
+			}
+    }
+  }
+}`
+
