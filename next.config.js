@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost:1337','127.0.0.1:1337'],
+    domains: ['localhost:1337','127.0.0.1:1337','https://octopus-app-gchmo.ondigitalocean.app:1337'],
   },
 }
 
