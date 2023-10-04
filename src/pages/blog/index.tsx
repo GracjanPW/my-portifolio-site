@@ -15,29 +15,29 @@ export default function Blog({ categories}:any) {
   };
 
   return (
-    <div className="container-fluid m-auto">
-      <h1 className="text-3xl my-4">Topics</h1>
-      <div className="flex flex-row">
+    <div className="container m-auto p-5 md:p-0">
+      <h1 className="text-4xl my-8 text-center">Topics</h1>
+      <div className="grid gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {categories &&
           categories.map((category:any) => {
             return (
-              <div key={category.id} className="flex-1">
-                <Card className="w-max m-auto" onClick={()=>navigateToCategory(category.attributes.Name)}>
-                
-                  <Image
+
+                <Card  key={category.id} className="md:w-10rem w-full m-auto" onClick={()=>navigateToCategory(category.attributes.Name)}>
+                  <div className="relative md:h-48 h-60 w-auto">
+                    <Image
                     loader={()=>`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.attributes.image.data.attributes.url}`}
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.attributes.image.data.attributes.url}`}
                     alt={category.attributes.image.data.attributes.name}
-                    width={0}
-                    height={0}
-                    style={{width:'100%',height:'auto'}}
-
+                    objectFit="cover"
+                    layout="fill"
                   />
+                  </div>
+                  
                   <h1 className="text-center font-semibold p-4">
                     {category.attributes.Name}
                   </h1>
                 </Card>
-              </div>
+
             );
           })}
       </div>

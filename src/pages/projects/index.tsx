@@ -5,6 +5,7 @@ import { GET_ALL_PROJECTS } from '@/lib/queries'
 import { useRouter } from 'next/router';
 import React from 'react'
 import Image from 'next/image';
+import timeStamp from '@/lib/timeStamp';
 export default function Page({
     projects
 }:any) {
@@ -14,33 +15,32 @@ export default function Page({
         router.push("/projects/"+href)
     }
   return (
-    <div className="container-fluid m-auto ">
-      <h1 className="text-3xl my-4">Projects</h1>
-      <div className="flex">
+    <div className="container m-auto p-5 md:p-0">
+      <h1 className="text-4xl my-8 text-center">Projects</h1>
+      <div className="grid gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {projects &&
           projects.map((project: any) => {
             return (
-              <div key={project.id} className="flex-1 max-w-[25%]">
-                <Card
+
+                <Card key={project.id} className='md:w-10rem w-full m-auto'
                   onClick={()=>goToProject(project.attributes.slug)}
                   
                 > 
-                  
-                  <Image
+                  <div className='relative md:h-48 h-60 w-auto'><Image
                     loader={()=>`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${project.attributes.thumbnail.data.attributes.url}`}
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${project.attributes.thumbnail.data.attributes.url}`}
                     alt={project.attributes.thumbnail.data.attributes.name}
-                    width={0}
-                    height={0}
-                    style={{width:'100%',height:'auto'}}
-                  />
+                    objectFit='cover'
+                    layout='fill'
+                  /></div>
+                  
                   <div className="p-3">
-                    <h1 className=" font-semibold text-lg text-center">{project.attributes.Name}</h1>
-                    <p>{project.attributes.publishedAt}</p>
+                    <h1 className="font-semibold text-lg text-center">{project.attributes.Name}</h1>
+                    <p className='text-right'>{timeStamp(project.attributes.publishedAt)}</p>
                   </div>
                   
                 </Card>
-              </div>
+    
             );
           })}
       </div>

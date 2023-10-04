@@ -43,6 +43,7 @@ export async function getStaticPaths(){
 }   
 
 export async function getStaticProps({params}:{params:{slug:string}}){
+    if (!params?.slug) return
     const {data} = await client.query({
         query: GET_PORJECT_BY_SLUG,
         variables:{

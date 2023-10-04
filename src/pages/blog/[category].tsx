@@ -2,6 +2,7 @@
 import Card from "@/components/common/Card";
 import client from "@/lib/GQLClient";
 import { GET_POSTS_BY_CATEGORY } from "@/lib/queries";
+import timeStamp from "@/lib/timeStamp";
 import Image from "next/image";
 
 export default function Page({ posts, category }: any) {
@@ -9,41 +10,39 @@ export default function Page({ posts, category }: any) {
     window.location.href = `/blog/post/${slug}`;
   };
   return (
-    <div className="m-auto container-fluid">
-      <h1 className="text-3xl my-4">Posts from {category}</h1>
-      <div className="flex">
-        {posts &&
-          posts.map((post: any) => {
-            return (
-              <div key={post.id} className="flex-1 max-w-[25%]">
-                <Card
-                  
-                  onClick={() => goToPost(post.attributes.slug)}
-                > 
-                  
+    <div className="container m-auto p-5 md:p-0">
+    <h1 className="text-4xl my-8 text-center">Topics</h1>
+    <div className="grid gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      {posts &&
+        posts.map((post:any) => {
+          return (
+
+              <Card  key={category.id} className="md:w-10rem w-full m-auto" onClick={()=>goToPost(post.attributes.slug)}>
+                <div className="relative md:h-48 h-60 w-auto">
                   <Image
                   loader={()=>`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.attributes.thumbnail.data.attributes.url}`}
-                    src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.attributes.thumbnail.data.attributes.url}`}
-                    alt={post.attributes.thumbnail.data.attributes.name}
-                    width={0}
-                    height={0}
-                    style={{width:'100%',height:'auto'}}
-                  />
-                  <div className="p-3">
-                    <h1 className=" font-semibold text-lg text-center">{post.attributes.Title}</h1>
-                    <p>{post.attributes.publishedAt}</p>
+                  src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.attributes.thumbnail.data.attributes.url}`}
+                  alt={post.attributes.thumbnail.data.attributes.name}
+                  objectFit="cover"
+                  layout="fill"
+                />
+                </div>
+                
+                <div className="p-3">
+                    <h1 className="font-semibold text-lg text-center">{post.attributes.Title}</h1>
+                    <p className='text-right'>{timeStamp(post.attributes.publishedAt)}</p>
                   </div>
-                  
-                </Card>
-              </div>
-            );
-          })}
-      </div>
+              </Card>
+
+          );
+        })}
     </div>
+  </div>
   );
 }
 
 export const getServerSideProps = async ({ params }: any) => {
+  if (!params?.category) return
   const { data } = await client.query({
     query: GET_POSTS_BY_CATEGORY,
     variables: {
@@ -51,6 +50,7 @@ export const getServerSideProps = async ({ params }: any) => {
     },
   });
 
+  console.log(data.categories.data)
   return {
     props: {
       posts: data.categories.data[0].attributes.posts.data,

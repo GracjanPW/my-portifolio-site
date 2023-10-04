@@ -46,7 +46,7 @@ export const getStaticPaths = async () =>{
 }
 
 export async function getStaticProps({ params }:any) {
-
+    if (!params?.slug) return
     const { data } = await client.query({
         query: GET_POST_BY_SLUG,
         variables:{

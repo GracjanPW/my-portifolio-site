@@ -13,7 +13,7 @@ export default function Home({name,role,description,image}:any) {
   console.log(image)
   return (
     <div className="container-fluid md:mx-auto flex h-full items-center py-10">
-      <div className="flex md:flex-row flex-col items-center w-full h-fit">
+      <div className="flex lg:flex-row flex-col items-center w-full h-fit">
         <Image
           loader={()=>`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${image.url}`}
           src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${image.url}`}
@@ -23,7 +23,7 @@ export default function Home({name,role,description,image}:any) {
           height={0}
           style={{width:'400px',height:'auto'}}
         />
-        <div className="grow flex flex-col items-top justify-start h-full text-center pl-10 space-y-2">
+        <div className="grow flex flex-col items-top justify-start h-full text-center lg:pl-10 lg:p-0 p-16  space-y-2">
           <div>
             <h1 className="text-3xl font-semibold">{name}</h1>
           <h2 className="text-2xl font-semibold">{role}</h2>
