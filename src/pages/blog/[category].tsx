@@ -11,7 +11,7 @@ export default function Page({ posts, category }: any) {
   };
   return (
     <div className="container m-auto p-5 md:p-0">
-    <h1 className="text-4xl my-8 text-center">Topics</h1>
+    <h1 className="text-4xl my-8 text-center">Posts from {category}</h1>
     <div className="grid gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
       {posts &&
         posts.map((post:any) => {
