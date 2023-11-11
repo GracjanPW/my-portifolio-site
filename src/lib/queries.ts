@@ -151,7 +151,7 @@ export const GET_HOME_PAGE_DATA = gql`query {
           data {
             attributes{
               url 
-              name
+              alternativeText
             }
           }
         }

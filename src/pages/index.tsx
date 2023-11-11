@@ -1,7 +1,6 @@
 
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import LboroIcon from '@p/lboro.svg'
 import client from "@/lib/GQLClient";
 import { GET_HOME_PAGE_DATA } from "@/lib/queries";
 import { serialize } from 'next-mdx-remote/serialize';
@@ -26,7 +25,7 @@ export default function Home({name,role,description,image}:any) {
         <div className="grow flex flex-col items-top justify-start h-full text-center lg:pl-10 lg:p-0 p-16  space-y-2">
           <div>
             <h1 className="text-3xl font-semibold">{name}</h1>
-          <h2 className="text-2xl font-semibold">{role}</h2>
+            <h2 className="text-2xl font-semibold">{role}</h2>
           </div>
           
           <div id="Desc">
@@ -46,7 +45,6 @@ export async function getStaticProps(){
   })
 
   const attrs = data.home.data.attributes
-  console.log()
   const html = await serialize(attrs.description)
   return {
     props: {
@@ -55,7 +53,7 @@ export async function getStaticProps(){
       description : html,
       image: {
         url :attrs.image.data[0].attributes.url,
-        alt : attrs.image.data[0].attributes.name
+        alt : attrs.image.data[0].attributes.alternativeText
       }
     }
   }
