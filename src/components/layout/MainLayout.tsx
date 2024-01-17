@@ -1,13 +1,14 @@
 import { ReactNode } from "react";
 import Header from "../unique/Header";
 import Footer from "../unique/Footer";
-import Navbar from "../unique/Navbar";
+import { Source_Code_Pro } from 'next/font/google';
+
+const SourceCodePro = Source_Code_Pro({subsets:['latin']});
 
 export default function MainLayout({ children }: { children: ReactNode }){
     return (
-        <div className="flex flex-col h-full">
+        <div className={"flex flex-col h-full " + SourceCodePro.className}>
             <Header/>
-            <Navbar/>
             <main className="grow bg-background">
                 {children}
             </main>

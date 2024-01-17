@@ -147,11 +147,22 @@ export const GET_HOME_PAGE_DATA = gql`query {
 				name
         role
         description
+        careerDesc
+        skills
         image {
           data {
             attributes{
               url 
               alternativeText
+            }
+          }
+        }
+        Interests {
+          data {
+            attributes {
+              url
+              alternativeText
+              caption
             }
           }
         }

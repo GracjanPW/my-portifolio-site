@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     screens: {
+      "mobile": { "max": "639px"},
       sm: "640px",
       md: "768px",
       lg: "1024px",
@@ -15,13 +16,17 @@ const config: Config = {
       "2xl": "1536px",
     },
     extend: {
+      boxShadow: {
+        'avatar': '0px 0px 10px 0px rgba(0, 0, 0, 0.74)',
+      },
       colors:{
+        text: '#3E3E3E',
         header:{
-          text: '#171616',
+          text: '#3E3E3E',
           bg: '#e3e3e3'
         },
         navbar:{
-          text: '#171616',
+          text: '#2B2B2B',
           bg: '#e3e3e3',
         },
         background:'#e3e3e3',
