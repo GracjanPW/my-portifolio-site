@@ -22,7 +22,7 @@ export default function Home({
   useEffect(() => {
     console.log(scroll);
   }, [scroll]);
-  console.log(interests);
+
   return (
     <div className="overflow-y-scroll h-full">
       <section
@@ -46,7 +46,7 @@ export default function Home({
           
 
           <div className="text-center lg:mx-auto">
-            <h1 className="text-5xl font-bold lg:mt-0 mt-10">That's Me!</h1>
+            <h1 className="text-5xl font-bold lg:mt-0 mt-10">That&apos;s Me!</h1>
             <h2 className="text-3xl mt-5">
               <MDXRemote {...description} components={{}} />
             </h2>
@@ -149,7 +149,7 @@ export default function Home({
           <h1 className="text-5xl font-bold">Interests</h1>
           <div className="flex flex-row justify-center items-center space-x-10 mt-10">
             {interests.map((interest:any,i:any) => (
-              <div className="flex flex-col justify-center items-center">
+              <div key={i} className="flex flex-col justify-center items-center">
               <Image
                 loader={() => `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${interest.attributes.url}`}
                 src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${interest.attributes.url}`}

@@ -4,9 +4,6 @@
 import { useState, useEffect } from 'react';
 
 function useScroll() {
-    if (typeof document === 'undefined') {
-        return 0;
-    }
     const [scroll, setScroll] = useState(0);
 
     useEffect(() => {
@@ -29,6 +26,13 @@ function useScroll() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    if (typeof document === 'undefined') {
+        return 0;
+    }
+    
+
+    
 
     return scroll;
 }
